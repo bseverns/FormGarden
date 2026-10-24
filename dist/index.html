@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10201d">
+  <meta name="description" content="A generative form laboratory for learning through deliberate iteration.">
+  <title>Form Garden · Iteration Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Form Garden home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span><strong>FORM GARDEN</strong><small>Iteration lab</small></span>
+    </a>
+    <div class="topbar-center" aria-label="Project name">
+      <label for="projectName">STUDY</label>
+      <input id="projectName" value="How does repetition become form?" maxlength="80">
+    </div>
+    <div class="topbar-actions">
+      <button class="icon-button" id="undoBtn" title="Undo" aria-label="Undo" disabled>↶</button>
+      <button class="icon-button" id="redoBtn" title="Redo" aria-label="Redo" disabled>↷</button>
+      <button class="button ghost" id="importBtn">Import</button>
+      <button class="button ghost" id="exportBtn">Export</button>
+      <button class="button primary" id="saveIterationBtn">Save iteration <span>⌘↵</span></button>
+      <input id="fileInput" type="file" accept=".json,application/json" hidden>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <aside class="learning-panel" aria-label="Learning guide">
+      <div class="mode-switch" role="tablist" aria-label="Workspace mode">
+        <button class="active" data-mode="guided" role="tab" aria-selected="true">Guided</button>
+        <button data-mode="open" role="tab" aria-selected="false">Open lab</button>
+      </div>
+
+      <section id="guidedContent">
+        <div class="lesson-kicker"><span>LESSON 01</span><span id="lessonProgress">1 / 4</span></div>
+        <h1 id="lessonTitle">Change one thing.</h1>
+        <p id="lessonBody">Keep every setting steady except <strong>bend</strong>. Predict the effect, test it, then record what surprised you.</p>
+        <div class="lesson-steps" id="lessonSteps" aria-label="Lesson steps"></div>
+      </section>
+
+      <section class="thinking-card">
+        <div class="card-heading">
+          <span class="eyebrow">BEFORE YOU CHANGE IT</span>
+          <button class="text-button" id="promptBtn">New prompt</button>
+        </div>
+        <label id="promptLabel" for="prediction">What will happen when bend increases?</label>
+        <textarea id="prediction" rows="3" placeholder="I predict the stems will…"></textarea>
+      </section>
+
+      <section class="thinking-card observation-card">
+        <span class="eyebrow">AFTER YOU OBSERVE</span>
+        <label for="observation">What changed—and what stayed the same?</label>
+        <textarea id="observation" rows="3" placeholder="I noticed…"></textarea>
+      </section>
+
+      <div class="teaching-note">
+        <span aria-hidden="true">✦</span>
+        <p><strong>Teaching move</strong> Ask learners to name the rule they think produced the form before showing them the controls.</p>
+      </div>
+    </aside>
+
+    <section class="studio" aria-label="Form workspace">
+      <div class="studio-toolbar">
+        <div class="preset-row" id="presetRow" aria-label="Starting forms"></div>
+        <div class="view-tools">
+          <button class="chip" id="motifBtn">Motif · Blocks</button>
+          <button class="icon-button" id="seedBtn" title="New deterministic variation" aria-label="New seed">⌁</button>
+          <button class="icon-button" id="fitBtn" title="Reset view" aria-label="Reset view">⌂</button>
+        </div>
+      </div>
+
+      <div class="canvas-wrap" id="canvasWrap">
+        <canvas id="gardenCanvas" aria-label="Interactive three-dimensional generative form"></canvas>
+        <div class="process-key" aria-label="Growth sequence">
+          <span><b>01</b> Emit</span><i></i><span><b>02</b> Turn</span><i></i><span><b>03</b> Grow</span><i></i><span><b>04</b> Branch</span>
+        </div>
+        <div class="canvas-help">Drag to orbit · Scroll to zoom · Shift-drag to pan</div>
+        <div class="build-stats" id="buildStats" aria-live="polite"></div>
+      </div>
+
+      <section class="journal" aria-label="Iteration journal">
+        <div class="journal-heading">
+          <div>
+            <span class="eyebrow">ITERATION JOURNAL</span>
+            <span class="journal-count" id="journalCount">0 saved</span>
+          </div>
+          <div>
+            <button class="button ghost small" id="clearJournalBtn">Clear</button>
+            <button class="button dark small" id="compareBtn" disabled>Compare two</button>
+          </div>
+        </div>
+        <div class="iteration-strip" id="iterationStrip">
+          <button class="empty-iteration" id="emptySaveBtn">
+            <span>＋</span>
+            <strong>Save your first iteration</strong>
+            <small>A snapshot, settings, and reflection will appear here.</small>
+          </button>
+        </div>
+      </section>
+    </section>
+
+    <aside class="controls-panel" aria-label="Generator controls">
+      <div class="controls-heading">
+        <div><span class="eyebrow">RULES</span><h2>Growth controls</h2></div>
+        <button class="text-button" id="resetBtn">Reset</button>
+      </div>
+      <p class="controls-intro">Every form begins with the same four actions. Adjust a rule to see its consequence.</p>
+      <div id="controls"></div>
+    </aside>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="compareDialog">
+    <form method="dialog" class="dialog-shell">
+      <div class="dialog-heading">
+        <div><span class="eyebrow">SIDE BY SIDE</span><h2>Compare iterations</h2></div>
+        <button class="icon-button" value="close" aria-label="Close comparison">×</button>
+      </div>
+      <p class="compare-guidance" id="compareGuidance">Select two saved iterations to compare.</p>
+      <div class="compare-grid" id="compareGrid"></div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

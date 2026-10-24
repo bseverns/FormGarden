@@ -1,0 +1,28 @@
+{
+  "seed": 4721,
+  "generator": "FormGarden",
+  "motif": 2,
+  "preset": 3,
+  "version": 1,
+  "parameters": {
+    "stems": 1,
+    "taper": 0.9940000176429749,
+    "exportMM": 180,
+    "length": 5,
+    "steps": 24,
+    "advance": 8,
+    "spread": 32,
+    "depth": 2.4000000953674316,
+    "jitter": 0,
+    "bend": 0.18000000715255737,
+    "width": 2.4000000953674316,
+    "sides": 3,
+    "childScale": 0.6600000262260437,
+    "radius": 22,
+    "twist": 4.800000190734863,
+    "precession": 0.20000000298023224,
+    "forkEvery": 38,
+    "levels": 0,
+    "budget": 18000
+  }
+}
